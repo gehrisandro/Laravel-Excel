@@ -28,7 +28,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function clear()
+    public function clear(): bool
     {
         $this->cache = [];
 
@@ -38,7 +38,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($key)
+    public function delete(string $key): bool
     {
         unset($this->cache[$key]);
 
@@ -48,7 +48,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteMultiple($keys)
+    public function deleteMultiple(iterable $keys): bool
     {
         foreach ($keys as $key) {
             $this->delete($key);
@@ -60,7 +60,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get($key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         if ($this->has($key)) {
             return $this->cache[$key];
@@ -72,7 +72,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function getMultiple($keys, $default = null)
+    public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
         $results = [];
         foreach ($keys as $key) {
@@ -85,7 +85,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         return isset($this->cache[$key]);
     }
@@ -93,7 +93,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function set($key, $value, $ttl = null)
+    public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
     {
         $this->cache[$key] = $value;
 
@@ -103,7 +103,7 @@ class MemoryCacheDeprecated implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function setMultiple($values, $ttl = null)
+    public function setMultiple(iterable $values, null|int|\DateInterval $ttl = null): bool
     {
         foreach ($values as $key => $value) {
             $this->set($key, $value);

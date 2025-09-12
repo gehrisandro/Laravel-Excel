@@ -129,6 +129,8 @@ class WithMultipleSheetsTest extends TestCase
                 return [
                     'Some Random Sheet Name' => new class {
                     },
+                    'Sheet1' => new class {
+                    },
                 ];
             }
         };
@@ -148,6 +150,8 @@ class WithMultipleSheetsTest extends TestCase
             {
                 return [
                     'Some Random Sheet Name' => new class {
+                    },
+                    'Sheet1' => new class {
                     },
                 ];
             }
@@ -184,6 +188,8 @@ class WithMultipleSheetsTest extends TestCase
                         {
                             Assert::assertEquals('Some Random Sheet Name', $sheetName);
                         }
+                    },
+                    'Sheet1' => new class {
                     },
                 ];
             }
